@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171c23"><title>Adivina la figura · CirculArte Lab</title><meta name="description" content="¿Puedes reconocer un dibujo hecho con círculos? Un juego de observación y velocidad, con su programación explicada."><style>@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--paper:#f4f2eb;--ink:#202723;--muted:#6f766d;--line:#dddcd2;--coral:#ed714f;--mint:#a7e4c7;--night:#171c23}*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',sans-serif}button,a{-webkit-tap-highlight-color:transparent}button{font:inherit;cursor:pointer}button:disabled{cursor:default;opacity:.42}button:focus-visible,a:focus-visible{outline:3px solid #b85b30;outline-offset:4px}a{color:inherit;text-decoration:none}button[hidden],[hidden]{display:none!important}.header{height:94px;margin:0 auto;padding:0 52px;display:flex;align-items:center;border-bottom:1px solid var(--line);gap:30px}.brand{font-family:'Space Grotesk',sans-serif;font-size:23px;font-weight:600;display:flex;align-items:center;gap:10px}.brand-mark{font-size:34px;color:var(--coral)}.lab{font:10px 'DM Sans',sans-serif;letter-spacing:2px;border:1px solid #bcbfb4;padding:5px 6px;margin-left:2px}.prototype{font-size:10px;letter-spacing:1.6px;color:var(--muted);display:flex;gap:8px;align-items:center}.prototype i{width:6px;height:6px;border-radius:50%;background:var(--coral)}.text-button{margin-left:auto;border:0;background:none;font-size:13px}.text-button span{margin-left:12px}main{max-width:1280px;margin:auto;padding:0 52px}.intro{display:flex;align-items:center;justify-content:space-between;padding:51px 0 35px;gap:25px}.eyebrow{font-size:10px;font-weight:700;letter-spacing:1.8px;color:var(--muted);margin:0 0 15px}h1,h2,h3,p{margin-top:0}h1{font:500 clamp(30px,3.6vw,49px)/1.12 'Space Grotesk',sans-serif;letter-spacing:-2px;margin-bottom:16px}h1>span{color:var(--coral)}.lede{font-size:14px;color:var(--muted);margin-bottom:0}.intro-note{display:flex;align-items:center;gap:15px;font-size:12px;line-height:1.7;flex-shrink:0}.intro-note>span{color:var(--coral);font-size:39px}.intro-note p{margin:0;color:var(--muted)}.intro-note strong{font-weight:500;color:var(--ink)}.layout{display:grid;grid-template-columns:minmax(0,1fr) 290px;gap:38px}.game{background:var(--night);color:#f5f5ed;border-radius:16px;overflow:hidden;box-shadow:0 18px 40px #26302312}.game-top{display:flex;align-items:center;justify-content:space-between;padding:17px 27px 7px}.game-title{font-size:10px;font-weight:600;letter-spacing:2px;display:flex;align-items:center;gap:10px}.mini-orbit{color:var(--mint);font-size:23px}.pause{width:30px;height:30px;border:1px solid #ffffff30;border-radius:50%;color:white;background:none;font-size:12px}.stats{display:flex;padding:15px 28px 18px;justify-content:space-between}.stats>div{min-width:95px}.stats>div:last-child{text-align:right}.stats span{display:block;font-size:9px;color:#929ba7;letter-spacing:1.6px;margin-bottom:5px}.stats strong{font:500 29px 'Space Grotesk',sans-serif;font-variant-numeric:tabular-nums}.stats small{font-size:14px;color:#79828e;font-weight:400}.time-track{height:3px;background:#ffffff10}.time-track div{height:100%;width:100%;background:var(--mint);transition:width .1s linear}.drawing-area{height:330px;position:relative;background-color:#1b222b;background-image:radial-gradient(#ffffff17 1px,transparent 1px);background-size:22px 22px;overflow:hidden}canvas{width:100%;height:100%;display:block;object-fit:contain}.canvas-tag{position:absolute;top:17px;left:25px;font-size:8px;color:#9da5ae;letter-spacing:1.5px;z-index:1}.canvas-bottom{position:absolute;bottom:15px;left:25px;right:25px;display:flex;justify-content:space-between;font-size:9px;color:#97a5ac;font-variant-numeric:tabular-nums}.canvas-bottom>span:first-child{display:flex;align-items:center;gap:6px}.mint-dot{display:inline-block;width:5px;height:5px;background:var(--mint);border-radius:50%}.overlay{position:absolute;inset:0;display:grid;place-items:center;background:#171c238c;backdrop-filter:blur(5px);z-index:2;text-align:center}.overlay-content{padding:15px}.overlay-kicker{font-size:9px;letter-spacing:1.8px;color:var(--mint)}.overlay h2{font:500 40px/1.04 'Space Grotesk',sans-serif;letter-spacing:-1.5px;margin:14px 0}.overlay p{color:#b3bdc7;font-size:12px;line-height:1.7;margin-bottom:18px}.primary{border:0;border-radius:6px;background:var(--coral);color:#171c23;font-weight:700;padding:13px 22px;font-size:12px;min-width:200px;display:inline-flex;align-items:center;justify-content:space-between;gap:24px;transition:background .2s,transform .2s}.primary:hover{background:#ff916c;transform:translateY(-1px)}.primary span{font-size:19px;line-height:1}.keyboard-note{display:block;font-size:9px;color:#9ba6b1;margin-top:12px}.answer-zone{padding:20px 25px 16px;min-height:171px}.answer-heading{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:13px;font-size:11px;color:#bbc2c8}.answer-heading button{background:none;border:0;color:var(--mint);padding:0;font-size:10px}.answer-heading button span{color:#758590;margin-left:5px;font-size:9px}.answers{display:grid;grid-template-columns:1fr 1fr;gap:9px}.answer{display:flex;align-items:center;gap:11px;text-align:left;border:1px solid #46505b;border-radius:6px;padding:12px;color:#e7eceb;background:#242c36;font-size:12px;transition:border-color .18s,background .18s;min-height:43px}.answer>span{color:#8695a2;font-size:9px;border:1px solid #ffffff20;border-radius:3px;width:19px;height:19px;display:grid;place-items:center}.answer:not(:disabled):hover{border-color:var(--mint);background:#303f44}.answer.correct{border-color:var(--mint);color:var(--mint);background:#a7e4c715;opacity:1}.answer.wrong{text-decoration:line-through;border-color:#ed714f70;background:#ed714f12}.feedback{color:#98a5ad;line-height:1.6;font-size:11px;margin-top:13px;min-height:18px}.feedback.success{color:var(--mint)}.feedback.error{color:#ffac8f}.next{margin-top:12px;width:100%}.game-footer{border-top:1px solid #ffffff0d;padding:13px 25px;display:flex;align-items:center;justify-content:space-between;font-size:8px;letter-spacing:1.25px;color:#7d8995}.game-footer button{background:none;border:0;color:#a4afb9;font-size:10px;letter-spacing:0}.side{padding-top:9px}.rules>.eyebrow{margin-bottom:13px}.rules h2{font:500 30px/1.15 'Space Grotesk',sans-serif;letter-spacing:-1px;margin-bottom:27px}ol{padding:0;list-style:none;margin:0}li{display:flex;gap:15px;margin-bottom:23px}li>span{font:500 11px 'Space Grotesk',sans-serif;color:#9ba28e;padding-top:2px}li strong{font-size:12px;font-weight:600}li p{font-size:12px;line-height:1.7;color:var(--muted);margin:5px 0 0}.record{margin-top:27px;border-top:1px solid var(--line);padding-top:20px}.record>span{font-size:9px;letter-spacing:1.4px;color:var(--muted)}.record strong{display:block;font:500 33px 'Space Grotesk',sans-serif;margin:6px 0 0}.record small{font-size:10px;color:var(--muted)}.lab-note{background:#e8eadf;padding:20px;border-radius:9px;margin-top:25px}.note-icon{font-size:22px;color:#657959}.lab-note p{font:500 17px 'Space Grotesk',sans-serif;margin:13px 0 8px}.lab-note>span:not(.note-icon){display:block;font-size:11px;line-height:1.7;color:var(--muted)}.lab-note button{background:none;border:0;padding:16px 0 0;font-size:10px;color:var(--ink);font-weight:600}.how{margin-top:46px;border-top:1px solid var(--line);padding-top:32px;scroll-margin-top:24px}.how-heading{display:flex;justify-content:space-between;align-items:center;gap:20px}.how h2{font:500 30px 'Space Grotesk',sans-serif;letter-spacing:-1px}.chip{font-size:10px;border:1px solid var(--line);border-radius:20px;padding:8px 12px;color:var(--muted)}.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.how article{padding:21px;border:1px solid var(--line);border-radius:9px;min-width:0}.step-label{font-size:9px;letter-spacing:1.4px;color:var(--muted)}.how h3{font:500 18px 'Space Grotesk',sans-serif;margin:15px 0 9px}.how article p,.sdk-note{font-size:12px;line-height:1.8;color:var(--muted)}pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:10px;line-height:1.8;background:#e8eadf;padding:12px;border-radius:5px;margin:18px 0 0}.live-state{margin-top:18px;padding:18px;background:var(--night);color:#bac6ce;border-radius:8px;display:flex;flex-wrap:wrap;align-items:center;gap:16px;font-size:10px}.live-state>span{font-size:9px;letter-spacing:1px}.live-state code{color:var(--mint);overflow-wrap:anywhere}.sdk-note{margin-top:18px;max-width:850px}.footer{display:flex;justify-content:space-between;border-top:1px solid var(--line);margin-top:38px;padding:22px 0 27px;font-size:10px;color:var(--muted)}@media(min-width:1400px){.drawing-area{height:370px}}@media(max-width:960px){main{padding:0 28px}.header{padding:0 28px}.layout{grid-template-columns:minmax(0,1fr) 240px;gap:24px}.intro-note{display:none}.rules h2{font-size:26px}.drawing-area{height:310px}.how-grid{grid-template-columns:1fr}.how-heading{align-items:start}.chip{max-width:150px;line-height:1.6}}@media(max-width:700px){.header{height:74px;padding:0 20px;gap:10px}.brand{font-size:19px;gap:6px}.brand-mark{font-size:28px}.prototype{display:none}.text-button{font-size:11px}.text-button span{margin-left:2px}main{padding:0 16px}.intro{padding:30px 4px 25px}.intro .eyebrow{font-size:8px;letter-spacing:1.3px}h1{font-size:34px;letter-spacing:-1.6px;max-width:310px}.lede{font-size:12px;line-height:1.7;max-width:320px}.layout{grid-template-columns:1fr;gap:30px}.game{border-radius:12px}.game-top{padding:15px 20px 4px}.game-title{font-size:9px}.stats{padding:13px 20px 16px}.stats strong{font-size:25px}.stats>div{min-width:70px}.drawing-area{height:300px}.answer-zone{padding:18px}.answer-heading{font-size:10px;align-items:flex-start}.answer-heading>span{max-width:180px}.answer-heading button{white-space:nowrap;font-size:9px}.answer-heading button span{display:block;text-align:right;margin-top:3px}.answer{padding:11px 9px;font-size:11px;gap:8px}.game-footer{padding:13px 18px;font-size:7px;letter-spacing:.7px}.side{display:grid;grid-template-columns:1fr;gap:0;padding:0 4px}.rules h2{font-size:26px}.record{margin-top:10px}.lab-note{margin-top:22px}.how-heading{display:block}.chip{display:inline-block;max-width:none;margin-bottom:18px}.how{margin-top:30px}.footer{font-size:9px}.overlay h2{font-size:36px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}.overlay{backdrop-filter:none}}
+</style></head>
+<body>
+<header class="header"><a class="brand" href="./" aria-label="CirculArte Lab, inicio"><span class="brand-mark">◉</span> CirculArte <span class="lab">LAB</span></a><span class="prototype"><i></i> PROTOTIPO 01</span><button class="text-button" id="explain">Cómo funciona <span>↗</span></button></header>
+<main>
+<section class="intro"><div><p class="eyebrow">UN POCO DE MATEMÁTICA. MUCHA INTUICIÓN.</p><h1>Antes de que sea obvio<span>.</span></h1><p class="lede">Unos círculos. Una figura oculta. ¿Cuánto necesitas ver para adivinarla?</p></div><div class="intro-note"><span>✦</span><p>Reconoce antes.<br><strong>Suma más puntos.</strong></p></div></section>
+<div class="layout">
+<section class="game" aria-label="Juego Adivina la figura">
+<div class="game-top"><span class="game-title"><span class="mini-orbit">◎</span> ADIVINA LA FIGURA</span><button id="pause" class="pause" disabled aria-label="Pausar juego">Ⅱ</button></div>
+<div class="stats"><div><span>RONDA</span><strong id="round">01 <small>/ 05</small></strong></div><div><span>PUNTOS</span><strong id="score">0000</strong></div><div><span>TIEMPO</span><strong id="timer">18<small>s</small></strong></div></div>
+<div class="time-track"><div id="time-fill"></div></div>
+<div class="drawing-area"><span class="canvas-tag" id="canvas-tag">EL DIBUJO EMPIEZA CONTIGO</span><canvas id="canvas" width="720" height="520" aria-label="Dibujo progresivo de una figura oculta"></canvas><div class="canvas-bottom"><span><i class="mint-dot"></i> <span id="drawing-status">60 círculos, infinitas posibilidades</span></span><span id="percent">0 %</span></div>
+<div class="overlay" id="overlay"><div class="overlay-content" id="overlay-content"><span class="overlay-kicker">OJOS LISTOS. MENTE RÁPIDA.</span><h2>¿Qué están<br>dibujando?</h2><p>5 figuras · 18 segundos por ronda<br>Cuanto antes aciertes, más ganas.</p><button class="primary" id="start">Vamos a jugar <span>→</span></button><span class="keyboard-note">También puedes responder con 1, 2, 3 y 4</span></div></div></div>
+<div class="answer-zone"><div class="answer-heading"><span id="question">Confía en tu primera impresión.</span><button id="hint" disabled>Pedir pista <span>−150 pts</span></button></div><div class="answers" id="answers"></div><div class="feedback" id="feedback" role="status" aria-live="polite">Una partida corta. Un pequeño reto para tu intuición.</div><button id="next" class="primary next" hidden>Siguiente figura <span>→</span></button></div>
+<div class="game-footer"><span>HECHO CON CÍRCULOS, NO CON MAGIA.</span><button id="restart">Reiniciar ↺</button></div>
+</section>
+<aside class="side"><section class="rules"><p class="eyebrow">EL RETO</p><h2>Menos trazo.<br>Más intuición.</h2><ol><li><span>01</span><div><strong>Mira cómo aparece</strong><p>La punta de los círculos va trazando una figura, poco a poco.</p></div></li><li><span>02</span><div><strong>Elige sin esperar al final</strong><p>Tienes cuatro opciones. La velocidad se convierte en puntos.</p></div></li><li><span>03</span><div><strong>Supera tu marca</strong><p>Cinco rondas para llegar hasta 5.000 puntos. ¿Te atreves?</p></div></li></ol><div class="record"><span>✧ TU MEJOR PARTIDA</span><strong id="best">—</strong><small>Guardada en este navegador</small></div></section><section class="lab-note"><span class="note-icon">↗</span><p>Del dibujo al juego.</p><span>Un experimento de CirculArte que convierte las series de Fourier en un reto de observación.</span><button id="open-code">Explorar la programación →</button></section></aside>
+</div>
+<section class="how" id="how" hidden><div class="how-heading"><div><p class="eyebrow">DETRÁS DEL TRAZO</p><h2>Así está programado.</h2></div><span class="chip">JavaScript + Canvas · sin dependencias</span></div><div class="how-grid"><article><span class="step-label">01 / LA FIGURA</span><h3>Un camino de puntos</h3><p>Cada silueta se define con coordenadas. Se distribuyen 512 puntos a distancias iguales sobre su contorno.</p><pre><code>const puntos = remuestrear(contorno, 512);
+const circulos = fourier(puntos, 60);</code></pre></article><article><span class="step-label">02 / LA ANIMACIÓN</span><h3>Círculos que suman</h3><p>Fourier convierte el camino en círculos que giran. La suma de sus movimientos posiciona el lápiz; el tiempo revela el trazo.</p><pre><code>x += radio * Math.cos(frecuencia * t + fase);
+y += radio * Math.sin(frecuencia * t + fase);</code></pre></article><article><span class="step-label">03 / LA PARTIDA</span><h3>El reloj pone el reto</h3><p>Una respuesta correcta cierra la ronda. Una incorrecta elimina esa opción y resta 100 puntos a lo que puedes ganar. La pista resta 150.</p><pre><code>puntos = Math.max(100,
+  Math.round(1000 - segundos * 40)
+  - errores * 100 - (pista ? 150 : 0));</code></pre></article></div><div class="live-state"><span><i class="mint-dot"></i> ESTADO REAL DEL JUEGO</span><code id="debug"></code></div><p class="sdk-note">Este prototipo corre en el navegador. Para TikTok Mini Games se adapta el render y se integra su SDK de inicio de sesión, almacenamiento y publicación. La API que sube videos es independiente.</p></section>
+<footer class="footer"><span>CirculArte Lab / 2026</span><span>Observa. Intuye. Descubre.</span></footer>
+</main><script>// Motor didáctico independiente. Mismo principio de Fourier que CirculArte.
+// No necesita imágenes, fuentes de emoji ni servicios externos.
+const TAU = Math.PI * 2;
+const polygon = (points) => points.map(([x,y]) => ({x,y}));
+const parametric = (f,n=240) => Array.from({length:n},(_,i) => {const [x,y]=f(i/n*TAU);return {x,y};});
+const FIGURES = [
+  {id:'corazon',name:'Corazón',hint:'Suele representar un sentimiento.',path:parametric(t=>[16*Math.sin(t)**3,-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t))])},
+  {id:'estrella',name:'Estrella',hint:'La puedes encontrar en el cielo.',path:polygon(Array.from({length:10},(_,i)=>{const t=i/10*TAU-Math.PI/2,r=i%2?45:100;return [Math.cos(t)*r,Math.sin(t)*r];}))},
+  {id:'luna',name:'Luna',hint:'Cambia de aspecto a lo largo del mes.',path:polygon([...Array.from({length:150},(_,i)=>{const t=-Math.PI/2-i/149*Math.PI;return [100*Math.cos(t),100*Math.sin(t)];}),...Array.from({length:150},(_,i)=>{const t=Math.PI/2+i/149*Math.PI;return [45+Math.cos(t)*65,100*Math.sin(t)];})])},
+  {id:'rayo',name:'Rayo',hint:'Aparece en una tormenta.',path:polygon([[20,-110],[-75,15],[-12,15],[-35,110],[80,-25],[15,-25]])},
+  {id:'casa',name:'Casa',hint:'Un lugar para vivir.',path:polygon([[-100,-10],[0,-100],[100,-10],[70,-10],[70,95],[20,95],[20,25],[-20,25],[-20,95],[-70,95],[-70,-10]])},
+  {id:'pez',name:'Pez',hint:'Su hogar está bajo el agua.',path:polygon([[-65,0],[-35,-45],[30,-60],[90,-28],[110,0],[90,28],[30,60],[-35,45],[-65,0],[-110,55],[-110,-55]])},
+  {id:'arbol',name:'Árbol',hint:'Tiene raíces, pero no camina.',path:polygon([[0,-115],[60,-45],[32,-45],[85,20],[48,20],[105,82],[20,82],[20,115],[-20,115],[-20,82],[-105,82],[-48,20],[-85,20],[-32,-45],[-60,-45]])},
+  {id:'cohete',name:'Cohete',hint:'Se prepara para despegar.',path:polygon([[0,-120],[35,-70],[40,20],[80,65],[80,100],[35,75],[22,75],[12,115],[0,92],[-12,115],[-22,75],[-35,75],[-80,100],[-80,65],[-40,20],[-35,-70]])},
+  {id:'corona',name:'Corona',hint:'Un símbolo de la realeza.',path:polygon([[-100,-65],[-45,-5],[0,-100],[45,-5],[100,-65],[75,90],[-75,90]])},
+  {id:'mariposa',name:'Mariposa',hint:'Empieza su vida como una oruga.',path:parametric(t=>{const r= Math.exp(Math.cos(t))-2*Math.cos(4*t)-Math.sin(t/12)**5;return [Math.sin(t)*r,-Math.cos(t)*r];})},
+];
+
+// Igualar distancias evita que el lápiz acelere en los segmentos largos.
+function remuestrear(points,count=512) {
+  const lengths=[0];
+  for(let i=0;i<points.length;i++){const a=points[i],b=points[(i+1)%points.length];lengths.push(lengths.at(-1)+Math.hypot(b.x-a.x,b.y-a.y));}
+  const result=[];let segment=0;
+  for(let j=0;j<count;j++){
+    const distance=j/count*lengths.at(-1);
+    while(segment<points.length-1 && lengths[segment+1]<distance) segment++;
+    const a=points[segment],b=points[(segment+1)%points.length],span=lengths[segment+1]-lengths[segment];
+    const ratio=span?(distance-lengths[segment])/span:0;
+    result.push({x:a.x+(b.x-a.x)*ratio,y:a.y+(b.y-a.y)*ratio});
+  }
+  const minX=Math.min(...result.map(p=>p.x)),maxX=Math.max(...result.map(p=>p.x));
+  const minY=Math.min(...result.map(p=>p.y)),maxY=Math.max(...result.map(p=>p.y));
+  const scale=300/Math.max(maxX-minX,maxY-minY,1);
+  return result.map(p=>({x:(p.x-(minX+maxX)/2)*scale,y:(p.y-(minY+maxY)/2)*scale}));
+}
+
+// Transformada discreta de Fourier compleja: un coeficiente = un círculo.
+function fourier(points,terms=60) {
+  const n=points.length,coefficients=[];
+  for(let j=0;j<terms;j++){
+    const frequency=j===0?0:Math.ceil(j/2)*(j%2?1:-1);let re=0,im=0;
+    for(let k=0;k<n;k++){
+      const angle=TAU*frequency*k/n,c=Math.cos(angle),s=Math.sin(angle);
+      re+=points[k].x*c+points[k].y*s;im+=points[k].y*c-points[k].x*s;
+    }
+    re/=n;im/=n;coefficients.push({frequency,radius:Math.hypot(re,im),phase:Math.atan2(im,re)});
+  }
+  return coefficients.sort((a,b)=>b.radius-a.radius);
+}
+
+function penAt(circles,t) {
+  let x=0,y=0;
+  for(const c of circles){x+=c.radius*Math.cos(c.frequency*t+c.phase);y+=c.radius*Math.sin(c.frequency*t+c.phase);}
+  return {x,y};
+}
+function makeDrawing(figure){
+  const circles=fourier(remuestrear(figure.path));
+  const curve=Array.from({length:721},(_,i)=>penAt(circles,i/720*TAU));
+  return {circles,curve};
+}
+function roundPoints(seconds,errors=0,hint=false){return Math.max(100,Math.round(1000-seconds*40)-errors*100-(hint?150:0));}
+function shuffled(items){const a=[...items];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+
+const $=id=>document.getElementById(id),canvas=$('canvas'),ctx=canvas.getContext('2d');
+const ROUND_SECONDS=18,ROUND_COUNT=5;
+// Toda la partida vive aquí. El render y la puntuación leen el mismo estado.
+const state={phase:'ready',round:0,total:0,elapsed:0,errors:0,hint:false,deck:[],options:[],selected:new Set(),correct:0};
+let drawing=makeDrawing(FIGURES[0]),lastTime=0,lastDebug=0,best=0;
+try{best=Number(localStorage.getItem('circularte-guess-best'))||0;}catch{}
+const format=n=>String(n).padStart(4,'0');
+$('best').textContent=best?`${best.toLocaleString('es')} pts`:'Por descubrir';
+function updateStats(){
+  $('round').innerHTML=`${String(state.round+1).padStart(2,'0')} <small>/ 05</small>`;
+  $('score').textContent=format(state.total);
+  $('timer').innerHTML=`${Math.ceil(Math.max(0,ROUND_SECONDS-state.elapsed))}<small>s</small>`;
+  $('time-fill').style.width=`${Math.max(0,1-state.elapsed/ROUND_SECONDS)*100}%`;
+  $('time-fill').style.background=state.elapsed>13?'#ed714f':'#a7e4c7';
+}
+function feedback(text,kind=''){$('feedback').textContent=text;$('feedback').className=`feedback ${kind}`;}
+function paintAnswers(){
+  $('answers').replaceChildren();
+  const choices=state.phase==='ready'?['Primera opción','Segunda opción','Tercera opción','Cuarta opción']:state.options.map(f=>f.name);
+  choices.forEach((name,i)=>{
+    const button=document.createElement('button');button.className='answer';
+    const key=document.createElement('span');key.textContent=i+1;button.append(key,document.createTextNode(name));
+    button.disabled=state.phase!=='playing'||state.selected.has(i);
+    if(state.phase==='reveal'&&state.options[i].id===state.deck[state.round].id)button.classList.add('correct');
+    else if(state.selected.has(i))button.classList.add('wrong');
+    button.addEventListener('click',()=>answer(i));$('answers').append(button);
+  });
+}
+function begin(){state.deck=shuffled(FIGURES).slice(0,ROUND_COUNT);state.round=0;state.total=0;state.correct=0;startRound();}
+function startRound(){
+  const target=state.deck[state.round];
+  Object.assign(state,{phase:'playing',elapsed:0,errors:0,hint:false,selected:new Set()});
+  state.options=shuffled([target,...shuffled(FIGURES.filter(f=>f.id!==target.id)).slice(0,3)]);
+  drawing=makeDrawing(target);lastTime=performance.now();
+  $('overlay').hidden=true;$('next').hidden=true;$('pause').disabled=false;$('pause').textContent='Ⅱ';$('pause').setAttribute('aria-label','Pausar juego');
+  $('hint').disabled=false;$('question').textContent='¿Qué figura se está dibujando?';
+  $('canvas-tag').textContent='MIRA EL TRAZO. CONFÍA EN TU INTUICIÓN.';
+  feedback('Hasta 1.000 puntos. Cada segundo cuenta.');updateStats();paintAnswers();
+}
+function answer(index){
+  if(state.phase!=='playing'||state.selected.has(index))return;
+  if(state.options[index].id===state.deck[state.round].id){
+    const points=roundPoints(state.elapsed,state.errors,state.hint);state.total+=points;state.correct++;
+    endRound(`¡Es ${state.deck[state.round].name.toLowerCase()}! +${points} puntos · ${state.elapsed.toFixed(1)} s`,'success');
+  }else{
+    state.selected.add(index);state.errors++;
+    feedback('Esa no era. −100 puntos de esta ronda. ¡Todavía puedes acertar!','error');paintAnswers();
+  }
+}
+function endRound(message,kind){
+  state.phase='reveal';$('hint').disabled=true;$('pause').disabled=true;
+  $('next').hidden=false;$('next').innerHTML=state.round===ROUND_COUNT-1?'Ver mi resultado <span>→</span>':'Siguiente figura <span>→</span>';
+  $('canvas-tag').textContent=state.deck[state.round].name.toUpperCase();
+  feedback(message,kind);updateStats();paintAnswers();$('next').focus({preventScroll:true});
+}
+function useHint(){
+  if(state.phase!=='playing'||state.hint)return;
+  state.hint=true;$('hint').disabled=true;
+  const wrong=state.options.findIndex((f,i)=>f.id!==state.deck[state.round].id&&!state.selected.has(i));
+  if(wrong>=0)state.selected.add(wrong);
+  feedback(`${state.deck[state.round].hint} Pista: −150 puntos.`);paintAnswers();
+}
+function showOverlay(content){$('overlay-content').innerHTML=content;$('overlay').hidden=false;}
+function pause(){
+  if(state.phase==='playing'){
+    state.phase='paused';$('hint').disabled=true;paintAnswers();$('pause').textContent='▶';$('pause').setAttribute('aria-label','Reanudar juego');
+    showOverlay('<span class="overlay-kicker">UN RESPIRO</span><h2>El reloj espera.</h2><p>Tu partida sigue justo donde la dejaste.</p><button class="primary" id="resume">Seguir jugando <span>→</span></button>');
+    $('resume').addEventListener('click',pause);$('resume').focus({preventScroll:true});
+  }else if(state.phase==='paused'){
+    state.phase='playing';lastTime=performance.now();$('overlay').hidden=true;$('hint').disabled=state.hint;paintAnswers();$('pause').textContent='Ⅱ';$('pause').setAttribute('aria-label','Pausar juego');
+  }
+}
+function finish(){
+  state.phase='finished';const newBest=state.total>best;
+  if(newBest){best=state.total;try{localStorage.setItem('circularte-guess-best',String(best));}catch{}}
+  $('best').textContent=`${best.toLocaleString('es')} pts`; $('next').hidden=true;
+  showOverlay(`<span class="overlay-kicker">${newBest?'✦ NUEVA MEJOR MARCA':'PARTIDA COMPLETADA'}</span><h2>${state.total.toLocaleString('es')}<br><span style="font-size:20px">puntos de intuición</span></h2><p>${state.correct} de 5 figuras adivinadas.<br>${state.total>=3500?'¡Tienes un ojo increíble!':'Cada partida entrena tu mirada.'}</p><button class="primary" id="again">Volver a jugar <span>↺</span></button>`);
+  $('again').addEventListener('click',begin);$('again').focus({preventScroll:true});
+}
+// Se dibuja la suma de círculos y solo la parte recorrida del contorno.
+function draw(now){
+  ctx.clearRect(0,0,720,520);ctx.save();ctx.translate(360,270);
+  const demo=state.phase==='ready',complete=state.phase==='reveal'||state.phase==='finished';
+  const progress=complete?1:demo?.28:Math.min(1,state.elapsed/(ROUND_SECONDS*.86));
+  const t=(demo?now/14000%1:progress)*TAU;
+  let x=0,y=0;
+  ctx.lineWidth=1;
+  for(const circle of drawing.circles){
+    const nx=x+circle.radius*Math.cos(circle.frequency*t+circle.phase),ny=y+circle.radius*Math.sin(circle.frequency*t+circle.phase);
+    if(circle.radius>1.2){ctx.strokeStyle=demo?'#a7e4c73b':'#a7e4c729';ctx.beginPath();ctx.arc(x,y,circle.radius,0,TAU);ctx.stroke();ctx.strokeStyle='#b8c4d53d';ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(nx,ny);ctx.stroke();}
+    x=nx;y=ny;
+  }
+  const limit=Math.floor(progress*720);
+  ctx.strokeStyle='#a7e4c7';ctx.lineWidth=3;ctx.lineJoin='round';ctx.lineCap='round';
+  ctx.shadowColor='#a7e4c7';ctx.shadowBlur=10;ctx.beginPath();
+  for(let i=0;i<=limit;i++){const p=drawing.curve[i];i?ctx.lineTo(p.x,p.y):ctx.moveTo(p.x,p.y);}
+  if(!demo&&!complete)ctx.lineTo(x,y);ctx.stroke();ctx.shadowBlur=0;
+  ctx.fillStyle='#ed714f';ctx.beginPath();ctx.arc(x,y,5,0,TAU);ctx.fill();ctx.restore();
+  $('percent').textContent=`${Math.round(progress*100)} %`;
+  $('drawing-status').textContent=complete?'Figura revelada':state.phase==='ready'?'60 círculos, infinitas posibilidades':'60 círculos en movimiento';
+}
+function tick(now){
+  if(state.phase==='playing'){
+    state.elapsed=Math.min(ROUND_SECONDS,state.elapsed+(now-lastTime)/1000);updateStats();
+    if(state.elapsed>=ROUND_SECONDS)endRound(`Se acabó el tiempo. Era ${state.deck[state.round].name.toLowerCase()}. +0 puntos.`,'error');
+  }
+  lastTime=now;draw(now);
+  if(now-lastDebug>200){$('debug').textContent=JSON.stringify({estado:state.phase,ronda:state.round+1,segundos:+state.elapsed.toFixed(1),errores:state.errors,pista:state.hint,puntos:state.total});lastDebug=now;}
+  requestAnimationFrame(tick);
+}
+function showHow(){const section=$('how');section.hidden=false;section.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});}
+$('start').addEventListener('click',begin);$('restart').addEventListener('click',begin);$('hint').addEventListener('click',useHint);$('pause').addEventListener('click',pause);
+$('next').addEventListener('click',()=>{if(state.phase!=='reveal')return;if(state.round===ROUND_COUNT-1)finish();else{state.round++;startRound();}});
+$('explain').addEventListener('click',showHow);$('open-code').addEventListener('click',showHow);
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&state.phase==='playing')pause();});
+document.addEventListener('keydown',event=>{
+  if(event.repeat||event.ctrlKey||event.metaKey||event.altKey||/INPUT|TEXTAREA|SELECT/.test(event.target.tagName))return;
+  if(/^[1-4]$/.test(event.key)){event.preventDefault();answer(Number(event.key)-1);}
+  if(event.key==='Escape')pause();
+});
+paintAnswers();updateStats();requestAnimationFrame(tick);
+</script>
+</body></html>

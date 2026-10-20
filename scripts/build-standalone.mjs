@@ -1,0 +1,10 @@
+import fs from 'node:fs';
+import {fileURLToPath} from 'node:url';
+const root = new URL('../', import.meta.url);
+const read = path => fs.readFileSync(new URL(path, root), 'utf8');
+const html=read('dist/index.html'), css=read('dist/style.css');
+const engine=read('dist/engine.js').replace(/^export /gm,'');
+const game=read('dist/game.js').replace(/^import .*;\r?\n/,'');
+const output=html.replace('<link rel="stylesheet" href="style.css">','<style>'+css+'</style>').replace('<script type="module" src="game.js"></script>','<script>'+engine+'\n'+game+'</script>');
+fs.writeFileSync(new URL('jugar.html', root), output);
+console.log('Generado: '+fileURLToPath(new URL('jugar.html',root)));

@@ -1,0 +1,14 @@
+{
+  "name": "minijuegos-guest-shape",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Adivina la figura con epiciclos: prototipo web de CirculArte Lab",
+  "scripts": {
+    "start": "node serve.mjs",
+    "build:standalone": "node scripts/build-standalone.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
